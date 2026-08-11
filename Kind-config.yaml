@@ -1,0 +1,15 @@
+apiVersion: kind.x-k8s.io/v1alpha4
+kind: Cluster
+nodes:
+# --- Control Planes (HA) ---
+- role: control-plane
+- role: control-plane
+
+# --- Workers ---
+- role: worker
+  extraPortMappings:
+  - containerPort: 30080
+    hostPort: 8080
+    protocol: TCP
+
+- role: worker
