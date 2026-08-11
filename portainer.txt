@@ -1,0 +1,75 @@
+Token: 2009ef06989e86a9af84e52caca884a6cf8f9652446ef16d224633f3d9a1697f
+
+URL do Portainer: https://localhost:9443/
+Senha: 13021988abcd
+
+---
+
+Passo 1: Criar o volume de dados do Portainer
+
+Este comando garante que suas configurações fiquem salvas caso o container seja reiniciado ou atualizado:
+
+docker volume create portainer_data
+
+---
+
+Passo 2: Rodar o container do Portainer
+
+
+Cole o comando abaixo no terminal para baixar e iniciar a interface gráfica:
+
+docker run -d -p 8000:8000 -p 9443:9443 --name portainer --restart=always -v /var/run/docker.sock:/var/run/docker.sock -v portainer_data:/data portainer/portainer-ce:latest
+
+---
+
+Passo 3: Acessar a Interface Gráfica
+
+1. Abra o navegador de sua preferência.
+2. Acesse: https://localhost:9443
+3. Aceite o aviso de certificado autoassinado (normal em uso local).
+4. Crie sua senha de administrador (mínimo 12 caracteres).
+5. Selecione "Get Started" para conectar o Portainer ao Docker local.
+
+---
+
+Comandos úteis adicionais
+
+# Docker básicos
+ctrl + q + p
+
+docker run -it ubuntu bash
+
+docker attach <container_id>
+
+docker container list
+
+docker run -d nginx
+
+docker exec -it <container_id> <command>
+
+docker run -ti --mount type=volume,src=<volume>,dst=<container_path> <image>
+
+docker container prune
+
+docker container inspect <container_id>
+
+docker container logs <container_id>
+
+docker container run -ti meu_apache1.0
+
+# Volumes Docker
+Local dos volumes: /var/lib/docker/volumes/
+
+# Kubernetes / kind
+kind delete cluster --name vini
+kind create cluster
+kubectl get nodes
+kubectl get po
+kubectl get all -A
+kubectl get clusters
+
+# Outros
+sudo snap install code --classic
+while true; do curl localhost:8080; done
+
+---
