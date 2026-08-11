@@ -76,3 +76,30 @@ sudo snap install code --classic
 while true; do curl localhost:8080; done
 
 ---
+Kind + nginx + ingress + github
+
+curl -sSL https://raw.githubusercontent.com/vimarbr/ESTUDOS/main/kind-config-ingress.yaml | kind create cluster --config -
+
+kubectl get nodes
+
+kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/controller-v1.10.0/deploy/static/provider/kind/deploy.yaml
+SE DER RUIM!!!!
+kubectl delete -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/main/deploy/static/provider/kind/deploy.yaml
+
+kubectl label node kind-control-plane ingress-ready=true --overwrite
+kubectl delete validatingwebhookconfiguration ingress-nginx-admission --ignore-not-found
+
+*********solução direto no tmp para o ingress
+curl -sSL https://raw.githubusercontent.com/kubernetes/ingress-nginx/controller-v1.10.0/deploy/static/provider/kind/deploy.yaml -o /tmp/deploy-ingress.yaml
+kubectl apply -f /tmp/deploy-ingress.yaml
+kubectl delete validatingwebhookconfiguration ingress-nginx-admission --ignore-not-found
+kubectl get pods -n ingress-nginx
+
+kubectl get pods -n ingress-nginx
+
+echo "127.0.0.1 meu-nginx.local" | sudo tee -a /etc/hosts
+
+kubectl apply -f https://raw.githubusercontent.com/vimarbr/ESTUDOS/main/nginx-ingress-app.yaml
+
+curl http://meu-nginx.local
+
