@@ -1,3 +1,6 @@
+emailgit:vimarbr@yahoo.com.br
+pass git: Palmeiras071951
+
 Token: 2009ef06989e86a9af84e52caca884a6cf8f9652446ef16d224633f3d9a1697f
 
 URL do Portainer: https://localhost:9443/
