@@ -70,6 +70,7 @@ kubectl get nodes
 kubectl get po
 kubectl get all -A
 kubectl get clusters
+kubectl cluster-info
 
 # Outros
 sudo snap install code --classic
@@ -103,3 +104,27 @@ kubectl apply -f https://raw.githubusercontent.com/vimarbr/ESTUDOS/main/nginx-in
 
 curl http://meu-nginx.local
 
+kubectl run pod-nginx --image nginx
+kubectl get nodes
+kubectl describe po
+kubectl describe nodes
+
+kubectl scale replicaset nome_replicaset --replicas=6 
+
+kubectl get pods -A --field-selector spec.nodeName=<nome-do-node>
+
+kubectl describe deploy nginx-deployment
+
+kubectl delete pod --all
+
+kubectl scale deploy nginx-deploy --replicas 20
+
+kubectl aplly -f arquivo_deploy
+
+kubectl describe pod
+
+kubectl get pods
+
+kubectl rollout undo deploy nome_do_deploy
+
+kubectl port-forward service/apache-service 7000:800
